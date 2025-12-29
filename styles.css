@@ -1,0 +1,1114 @@
+html {
+  font-size: 16px;
+  overflow: hidden;
+}
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  height: 100vh;
+  display: flex;
+  background-color: #5A6E7F;
+  overflow: hidden;
+}
+.layout-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 0;
+}
+.sidebar {
+  background-color: #33383F;
+  color: white;
+  padding: 5px;
+  width: 270px;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.77rem;
+  border-radius: 8px;
+  margin: 6px 0 0 6px;
+  box-sizing: border-box;
+  height: calc(100vh - 12px);
+  min-width: 180px;
+  max-width: 485px;
+  border: 2.5px solid #222;
+  position: relative;
+  overflow: hidden;
+}
+.sidebar-resizer {
+  width: 7px;
+  cursor: ew-resize;
+  background-color: transparent;
+  margin: 8px 0 0 0;
+}
+.resizing-sidebar,
+.resizing-sidebar * {
+  user-select: none !important;
+}
+.resizing-sidebar .preview-pane {
+  pointer-events: none;
+  contain: strict;
+}
+.resizing-sidebar .editor-pane textarea {
+  pointer-events: none;
+}
+.note-list,
+.notes {
+  list-style-type: none;
+  padding-left: 10px;
+  margin: 0;
+}
+.note-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 4px;
+}
+.note-list li,
+.notes li {
+  margin: 4px 0;
+  cursor: pointer;
+}
+.notes {
+  display: none;
+}
+.has-notes.open > .notes {
+  display: block;
+}
+.controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+#sidebar.export-mode .controls #addNoteBtn {
+  display: none;
+}
+.export-toolbar {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  flex: 1 1 0;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  min-width: 0;
+  margin: 3px 0;
+}
+.sidebar.export-mode .export-toolbar {
+  display: flex;
+}
+.sidebar.export-mode {
+  position: relative;
+}
+.export-toolbar label {
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: white;
+  font-weight: 400;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+.export-toolbar input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  accent-color: #fff;
+}
+.export-toolbar button {
+  flex: 1 1 0;
+  padding: 4px 8px;
+  font-size: 0.85rem;
+  min-width: 0;
+  border-radius: 6px;
+  border: 1px solid #5a5a5a;
+  background-color: #505050;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  line-height: 1;
+  text-transform: none;
+}
+.export-toolbar button:disabled {
+  background-color: #505050 !important;
+  color: white !important;
+  border-color: #5a5a5a !important;
+  cursor: not-allowed;
+  opacity: 1;
+  box-shadow: none;
+  outline: none;
+  border-color: #5a5a5a !important;
+}
+.export-toolbar button:disabled:hover {
+  background-color: #505050 !important;
+  border-color: #5a5a5a !important;
+}
+.export-toolbar button:hover {
+  background-color: #353535;
+}
+.export-toolbar button:active {
+  background-color: #000000;
+}
+.export-toolbar .cancel {
+  display: flex;
+}
+.export-select-row {
+  display: none;
+  align-items: center;
+  padding: 0 6px 4px;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 500;
+  justify-content: flex-start;
+  padding-bottom: 6px;
+  background: linear-gradient(180deg, rgba(51,56,63,0), rgba(51,56,63,0.9) 60%, rgba(51,56,63,1));
+  z-index: 10;
+  flex-shrink: 0;
+  margin-top: auto; /* push this row to the bottom of the sidebar */
+}
+.sidebar.export-mode .export-select-row {
+  display: flex;
+  gap: 8px;
+  min-height: 32px;
+}
+.sidebar.export-mode .note-header .actions button {
+  display: none;
+}
+.export-select-row .export-inline-select {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+}
+.export-select-row .export-inline-select input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #fff;
+}
+.export-checkbox {
+  display: none;
+  align-items: center;
+  margin-right: 6px;
+  gap: 2px;
+}
+.export-checkbox input {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: #fff;
+}
+.export-select-row .export-inline-select input[type="checkbox"]:focus-visible,
+.export-checkbox input:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.9);
+  border-radius: 3px;
+}
+.sidebar.export-mode .note-header .export-checkbox {
+  display: inline-flex;
+}
+#addNoteBtn {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 100%;
+  padding: 4px 8px;
+  margin: 3px 0;
+  border: 1px solid #5a5a5a;
+  background-color: #505050;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+}
+#addNoteBtn:hover {
+  background-color: #353535;
+}
+#addNoteBtn:active {
+  background-color: #000000;
+}
+.main-split {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
+  height: calc(100vh - 12px);
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 0 6px 0 4px;
+  background: none;
+  position: relative;
+  margin-top: 6px;
+}
+.editor-pane,
+.preview-pane {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 8px;
+  border: 2.5px solid #888;
+  overflow: auto;
+  padding: 0;
+  min-height: 300px;
+}
+.editor-pane textarea {
+  flex: 1;
+  width: 100%;
+  border: none;
+  outline: none;
+  resize: none;
+  font-size: 1.02rem;
+  padding: 11px;
+  background: transparent;
+  font-family: inherit;
+  box-sizing: border-box;
+  min-height: 300px;
+  contain: layout style paint;
+  transform: translateZ(0);
+}
+.preview-pane {
+  padding: 11px;
+  font-size: 1.02rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 300px;
+  background: #fafbfc;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  contain: layout style paint;
+  transform: translateZ(0);
+  will-change: contents;
+}
+.preview-pane hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 1.5em 0;
+}
+.editor-pane.disabled textarea,
+.preview-pane.disabled {
+  background: #bcbcbc !important;
+  color: #888 !important;
+  pointer-events: none;
+  user-select: none;
+}
+.preview-pane h1,
+.preview-pane h2,
+.preview-pane h3,
+.preview-pane h4,
+.preview-pane h5,
+.preview-pane h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 1.2;
+  font-weight: bold;
+}
+.preview-pane p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.note-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #33383F;
+  padding: 3px 5px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.note-header.active {
+  background-color: #000000;
+}
+.note-header .left-group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding-left: 4px;
+  box-sizing: border-box;
+}
+.note-header .arrow {
+  cursor: pointer;
+  margin-right: 4px;
+  color: white;
+  font-size: 0.75rem;
+  margin-left: 0;
+}
+.note-header .title {
+  color: white;
+  font-size: 0.77rem;
+  margin-right: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-left: 0 !important; /* keep all titles the same distance from the left edge */
+}
+.note-header .actions {
+  display: flex;
+  align-items: center;
+  margin-left: 0;
+}
+.note-header .edit-title-btn {
+  margin-left: 25px;
+  margin-right: 2px;
+}
+.note-header .plus-btn {
+  /* visually match trash button while keeping the '+' character centered */
+  margin-right: 2px;
+  margin-left: 0;
+
+  width: 28px;           /* match trash button */
+  height: 28px;
+  min-width: 28px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+
+  /* visual appearance */
+  background-color: #505050;
+  border-radius: 6px;
+  border: 1px solid #5a5a5a;
+  color: white;
+  font-size: 20px !important;       /* size the '+' glyph - bigger */
+  line-height: 0.9;
+  padding-bottom: 2px !important;      /* move plus sign 1px higher */
+  font-weight: 600;      /* slightly bolder for clarity */
+  font-family: inherit;
+  cursor: pointer;
+  text-align: center;
+}
+.note-header .plus-btn:hover {
+  background-color: #353535;
+}
+.note-header .plus-btn:active {
+  background-color: #000000;
+}
+/* Recover button should use normal button styling, not plus-btn styling */
+.note-header .plus-btn[title="Recover Item"] {
+  width: auto;
+  height: 24px !important;
+  min-width: 24px;
+  padding: 0 6px !important;
+  padding-bottom: 0 !important;
+  font-size: 0.8rem !important;
+  line-height: 1;
+  align-items: center;
+}
+.note-header .trash-btn {
+  /* show a trashcan icon (inline SVG will be inserted into the button) */
+  margin-left: 0;
+  padding: 0;
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* keep any textual label for screen readers but hide visually */
+  font-size: 0;
+  line-height: 0;
+  color: white;
+
+  /* visual styling consistent with other action buttons */
+  background-color: #505050;
+  border-radius: 6px;
+  border: 1px solid #5a5a5a;
+  cursor: pointer;
+}
+/* ensure inline SVG uses the button color for stroke/fill if it uses currentColor */
+.note-header .trash-btn svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+  color: white; /* SVGs using stroke="currentColor" will adopt this */
+}
+
+/* Make the Trash notebook icon the same size as the delete/trash icons */
+.trash-notebook .left-group svg {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  color: white; /* uses currentColor for stroke */
+
+  /* nudge icon up slightly so it's level with the surrounding text */
+  transform: translateY(-1px);
+}
+.note-header .actions button {
+  background-color: #505050;
+  border-radius: 6px;
+  border: 1px solid #5a5a5a;
+  color: white;
+  cursor: pointer;
+  width: auto;
+  min-width: 24px;
+  height: 24px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  padding: 0 6px;
+  font-weight: 500;
+  font-family: inherit;
+}
+.note-header .actions button:hover {
+  background-color: #353535;
+}
+.note-header .actions button:active {
+  background-color: #000000;
+}
+.modal-bg {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  align-items: center;
+  justify-content: center;
+}
+.modal-bg.show {
+  display: flex;
+}
+.modal-dialog {
+  background: #fff;
+  border-radius: 12px;
+  border: 4px solid #000000;
+  min-width: 260px;
+  max-width: 90vw;
+  min-height: 100px;
+  padding: 20px 18px 16px 18px;
+  box-shadow: 0 2px 32px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.modal-title {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 12px;
+  text-align: center;
+}
+.modal-input {
+  font-size: 1rem;
+  padding: 7px 10px;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+  margin-bottom: 16px;
+  font-family: inherit;
+}
+.modal-input:focus {
+  border-color: #000000;
+  outline: none;
+}
+.modal-btn-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: var(--modal-action-top-gap);
+}
+.modal-btn {
+  padding: 5px 16px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #000000;
+  background: #505050;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  font-family: inherit;
+}
+.modal-btn:hover {
+  background: #353535;
+}
+.modal-btn:active {
+  background: #000000;
+}
+.modal-btn:not(:disabled):hover {
+  background: #353535;
+}
+.modal-btn:not(:disabled):active {
+  background: #000000;
+}
+.modal-btn:disabled,
+.modal-btn:disabled:hover,
+.modal-btn:disabled:focus,
+.modal-btn:disabled:active {
+  background: #505050 !important;
+  color: white !important;
+  border-color: #000000 !important;
+  opacity: 1;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+#deleteModalBg .modal-dialog {
+  min-height: 80px;
+  padding: 16px 18px 12px 18px;
+}
+:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.7);
+}
+.main-split.preview-only .editor-pane {
+  display: none !important;
+}
+.main-split.preview-only .preview-pane {
+  flex: 1 1 100%;
+  width: 100% !important;
+  max-width: 100% !important;
+  border-radius: 8px;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 6px;
+  background: transparent;
+  margin-right: -1px;
+}
+::-webkit-scrollbar-thumb {
+  background: #b6b6b6;
+  border-radius: 12px;
+  min-height: 16px;
+  min-width: 16px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 12px;
+  margin: 5px 0;
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #b6b6b6 transparent;
+}
+.math-symbols-modal-bg {
+  display: none;
+  position: fixed;
+  z-index: 3000;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  align-items: center;
+  justify-content: center;
+}
+.math-symbols-modal-bg.show {
+  display: flex;
+}
+.math-symbols-modal-dialog {
+  background: #fff;
+  border-radius: 12px;
+  border: 4px solid #000;
+  min-width: 520px;
+  min-height: 480px;
+  width: 520px;
+  height: 480px;
+  padding: 20px 18px 0 18px;
+  box-shadow: 0 2px 32px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+}
+.math-symbols-modal-header-row {
+  display: flex;
+  width: 100%;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-radius: 4px 4px 0 0;
+  border: none !important;
+  box-shadow: none !important;
+  background: #000;
+  border-top: none !important;
+}
+.math-symbols-modal-header-box {
+  flex: 1 1 0;
+  padding: 8px 0;
+  text-align: center;
+  font-weight: 500;
+  font-size: 0.95em;
+  color: #fff;
+  user-select: none;
+  background: none;
+  border: none;
+  margin: 0;
+  min-width: 0;
+}
+.math-symbols-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+.math-symbols-table th {
+  display: none;
+}
+.math-symbols-table td {
+  padding: 8px 0;
+  font-size: 1rem;
+  cursor: pointer;
+  user-select: all;
+  background: none;
+  transition: background 0.15s;
+  color: #fff;
+  border: none;
+  vertical-align: middle;
+  text-align: center;
+}
+.math-symbols-table td:first-child {
+  width: 50%;
+  text-align: center;
+  font-family: serif;
+}
+.math-symbols-table td:last-child {
+  width: 50%;
+  text-align: center;
+  font-family: monospace;
+}
+.math-symbols-table tr {
+  background: #505050;
+  cursor: pointer;
+  border-radius: 6px;
+  margin: 2px 0;
+  display: table-row;
+}
+.math-symbols-table tr:active,
+.math-symbols-table tr.selected {
+  background: #000000 !important;
+  color: #fff !important;
+  font-weight: bold;
+}
+.math-symbols-table tr:hover,
+.math-symbols-table tr:focus,
+.math-symbols-table tr:focus-visible {
+  background: #353535;
+  color: #fff;
+}
+.math-symbols-table tr:focus td,
+.math-symbols-table tr:focus-visible td {
+  color: inherit;
+}
+.math-symbols-table tr:focus,
+.math-symbols-table tr:focus-visible {
+  outline: none;
+  cursor: pointer;
+}
+.math-symbols-modal-content-scroll {
+  overflow-y: auto;
+  flex: 1 1 auto;
+  margin-bottom: 0;
+  border-radius: 0 0 2px 2px;
+  border: none !important;
+  box-shadow: none !important;
+  background: #fafbfc;
+  padding: 0;
+}
+.math-symbols-modal-close-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0;
+  position: sticky;
+  bottom: var(--modal-action-bottom-gap);
+  left: 0;
+  right: 0;
+  padding: 12px 0 0 0;
+  background: #fff;
+  border-top: none !important;
+  z-index: 10;
+  gap: 10px;
+}
+.math-symbols-modal-insert-btn,
+.math-symbols-modal-cancel-btn {
+  padding: 5px 16px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #000000;
+  background: #505050;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  font-family: inherit;
+  margin-bottom: 8px;
+  transition: background 0.15s;
+}
+.math-symbols-modal-insert-btn:disabled {
+  cursor: not-allowed;
+}
+.math-symbols-modal-insert-btn:hover:enabled,
+.math-symbols-modal-cancel-btn:hover {
+  background: #353535;
+}
+.math-symbols-modal-insert-btn:active:enabled,
+.math-symbols-modal-cancel-btn:active {
+  background: #000000;
+}
+.math-symbols-search {
+  margin-bottom: 10px;
+  font-size: 1rem;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  transition: border 0.15s;
+}
+.math-symbols-search:focus {
+  border: 1.5px solid #000;
+}
+.preview-pane table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+  background: #fff;
+  font-size: 1em;
+}
+.preview-pane th,
+.preview-pane td {
+  border: 1px solid #bbb;
+  padding: 6px 12px;
+  text-align: left;
+}
+.preview-pane th {
+  background: #f2f2f2;
+  font-weight: bold;
+}
+.preview-pane tr:nth-child(even) td {
+  background: #f9f9f9;
+}
+.preview-pane tr:nth-child(odd) td {
+  background: #fff;
+}
+.preview-pane td[align="right"],
+.preview-pane th[align="right"] {
+  text-align: right;
+}
+.preview-pane td[align="center"],
+.preview-pane th[align="center"] {
+  text-align: center;
+}
+.custom-bg-dialog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.custom-bg-title {
+  margin-bottom: 14px;
+  text-align: center;
+}
+.custom-bg-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+.custom-bg-hex {
+  width: 110px;
+  text-align: center;
+}
+.custom-bg-swatch {
+  width: 38px;
+  height: 38px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  border: 2.5px solid #aaa;
+  box-sizing: border-box;
+  background: #5A6E7F;
+}
+.custom-bg-swatch.invalid {
+  border-color: #D32F2F;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(211, 47, 47, 0.8) 0 8px,
+      rgba(255, 255, 255, 0.9) 8px 16px
+    );
+}
+
+.custom-bg-btn-row {
+  margin-top: auto;
+  padding-top: var(--modal-action-top-gap);
+  justify-content: center;
+}
+.custom-table-dialog {
+  background: #fff;
+  border-radius: 12px;
+  border: 4px solid #000;
+  min-width: 520px;
+  min-height: 480px;
+  width: 520px;
+  height: 480px;
+  max-width: 90vw;
+  max-height: 80vh;
+  box-shadow: 0 2px 32px rgba(0, 0, 0, 0.18);
+  padding: 20px 18px 0 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+}
+.custom-table-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 12px;
+}
+.custom-table-label {
+  font-size: 1em;
+}
+#customTableRows,
+#customTableCols {
+  width: 48px;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+  padding: 4px 8px;
+  font-size: 1em;
+  font-family: inherit;
+  background: #fafbfc;
+  outline: none;
+  transition: border 0.15s;
+}
+#customTableRows:focus,
+#customTableCols:focus {
+  border-color: #000;
+}
+.custom-table-scroll {
+  padding: 0;
+}
+.custom-table-cells {
+  flex: 1 1 auto;
+  overflow: auto;
+  max-height: none;
+  min-height: 0;
+  margin: 0;
+}
+#customTableModalBg .custom-table-input,
+.custom-table-dialog #customTableCells .custom-table-input {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1rem;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+  background: #fafbfc;
+  font-family: inherit;
+  color: #222;
+  outline: none;
+  height: 34px;
+}
+#customTableModalBg .custom-table-input:focus,
+.custom-table-dialog #customTableCells .custom-table-input:focus {
+  border-color: #000;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.06);
+}
+#customTableCells table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+#customTableCells td {
+  padding: 3px 3px !important;
+  min-width: 60px;
+  max-width: 180px;
+  word-break: break-word;
+  border: 1px solid #bbb;
+  background: #fff;
+  font-size: 1em;
+  text-align: left;
+}
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+  border-color: #000000 !important;
+  outline: none;
+}
+
+/* Use a blue focus ring for note headers (rounded) */
+.note-header:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.7);
+  border-radius: 6px;
+}
+
+/* Arrow: show a boxier focus ring ONLY when keyboard navigation (Tab) is active */
+.user-is-tabbing .note-header .arrow:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.7);
+  border-radius: 3px;
+}
+
+/* Drop target visuals */
+.has-notes {
+  position: relative; /* ensure pseudo elements align */
+}
+
+/* top 25%: show a bold blue bar at the top edge (move slightly above so it appears between items) */
+.has-notes.drop-above::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  height: 4px;
+  top: -4px; /* was: top: 2px; -> move above the element so it's between notes */
+  background: rgba(0, 123, 255, 0.95);
+  border-radius: 2px;
+  z-index: 6;
+  pointer-events: none;
+}
+
+/* bottom 25%: show a bold blue bar at the bottom edge (move slightly below so it appears between items) */
+.has-notes.drop-below::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  height: 4px;
+  bottom: -4px; /* was: bottom: 2px; -> move below the element so it's between notes */
+  background: rgba(0, 123, 255, 0.95);
+  border-radius: 2px;
+  z-index: 6;
+  pointer-events: none;
+}
+
+/* middle 50%: highlight the header to indicate 'become child' 
+   — use the same blue ring as keyboard focus */
+.has-notes.drop-inside > .note-header {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.7);
+  border-radius: 6px;
+}
+
+/* Remove the pointer cursor while dragging over (prevents accidental click illusion) */
+.has-notes.drop-above > .note-header,
+.has-notes.drop-below > .note-header,
+.has-notes.drop-inside > .note-header {
+  cursor: default;
+}
+
+/* small accessibility helper to keep screen-reader text but hide visually */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+.trash-notebook .note-header .actions {
+  margin-left: 25px; /* match the space introduced by the edit button on normal notes */
+}
+
+/* Print rules: hide chrome and print only preview content */
+@media print {
+  *, *::before, *::after {
+    box-shadow: none !important;
+  }
+
+  html,
+  body {
+    height: auto !important;
+    width: auto !important;
+    overflow: visible !important;
+    background-color: #fff !important;
+    color: #000 !important;
+    margin: 0;
+  }
+
+  .layout-container {
+    padding: 0;
+    margin: 0;
+  }
+
+  .sidebar,
+  .sidebar-resizer,
+  .editor-pane,
+  .controls,
+  .modal-bg,
+  .math-symbols-modal-bg,
+  .math-symbols-modal-dialog,
+  .math-symbols-modal-content-scroll,
+  .math-symbols-modal-header-row,
+  .math-symbols-modal-close-row,
+  .custom-table-dialog,
+  .custom-bg-dialog {
+    display: none !important;
+  }
+
+  .main-split {
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+  }
+
+  .preview-pane {
+    display: block !important;
+    flex: none;
+    position: static;
+    width: 100%;
+    min-height: auto;
+    margin: 0;
+    padding: 0.25in 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: #fff !important;
+    color: #000 !important;
+    overflow: visible;
+  }
+
+  .preview-pane img {
+    max-width: 100%;
+    height: auto !important;
+  }
+
+  .preview-pane table {
+    page-break-inside: avoid;
+  }
+
+  .preview-pane * {
+    color: inherit !important;
+  }
+
+  .preview-pane hr {
+    border-color: #bbb;
+  }
+}
+
+@page {
+  margin: 18mm;
+}

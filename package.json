@@ -1,0 +1,61 @@
+{
+  "name": "archive-notes",
+  "version": "1.0.2",
+  "description": "A note-taking app with Markdown and LaTeX support",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "prepack": "node scripts/clean-dist.js && node scripts/copy-third-party-licenses.js",
+    "predist": "node scripts/clean-dist.js && node scripts/copy-third-party-licenses.js",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "author": "Carson Matheu <cjmatheu31@outlook.com>",
+  "bugs": {
+    "url": "https://github.com/Mat-412/archive-notes/issues"
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "dependencies": {
+    "dompurify": "^3.3.1",
+    "electron-updater": "^6.6.2",
+    "marked": "^12.0.2",
+    "mathjax": "^3.2.2"
+  },
+  "devDependencies": {
+    "electron": "^39.2.7",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.carsonmatheu.archivenotes",
+    "productName": "Archive Notes",
+    "icon": "favicon.ico",
+    "artifactName": "ArchiveNotes-free-Setup-${version}.${ext}",
+    "extraResources": [
+      "LICENSE.txt",
+      "THIRD_PARTY_NOTICES.txt",
+      "third_party_licenses"
+    ],
+    "files": [
+      "**/*"
+    ],
+    "directories": {
+      "buildResources": "build"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "favicon.ico"
+    },
+    "nsis": {
+      "license": "LICENSE.txt",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "Mat-412",
+        "repo": "archive-notes"
+      }
+    ]
+  }
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Archive Notes</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'none'">
+  <link rel="stylesheet" href="styles.css" />
+  <script src="./node_modules/marked/marked.min.js"></script>
+  <script src="./node_modules/dompurify/dist/purify.min.js"></script>
+  <script src="renderer-config.js"></script>
+  <script src="./node_modules/mathjax/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <div class="layout-container">
+    <div class="sidebar" id="sidebar">
+      <div class="controls">
+        <button id="addNoteBtn">Add Notebook</button>
+        <div id="exportToolbar" class="export-toolbar" hidden>
+          <button id="exportInlineConfirm" class="modal-btn">Confirm</button>
+          <button id="exportInlineCancel" class="modal-btn cancel">Cancel</button>
+        </div>
+      </div>
+      <ul class="note-list" id="noteList"></ul>
+      <div id="exportSelectRow" class="export-select-row" hidden>
+        <label class="export-inline-select">
+          <input type="checkbox" id="exportInlineSelectAll" checked>
+          Select All
+        </label>
+      </div>
+    </div>
+    <div class="sidebar-resizer" id="sidebarResizer"></div>
+    <div class="main-split" id="mainSplit">
+      <div class="editor-pane" id="editorPane">
+        <textarea id="markdownInput" spellcheck="false" placeholder="Type Markdown + LaTeX here..."></textarea>
+      </div>
+      <div class="preview-pane" id="previewPane"></div>
+    </div>
+  </div>
+  <div class="modal-bg" id="modalBg" tabindex="-1">
+    <div class="modal-dialog" role="dialog" aria-modal="true">
+      <div class="modal-title" id="modalTitle"></div>
+      <input class="modal-input" id="modalInput" type="text" />
+      <div class="modal-btn-row">
+        <button class="modal-btn" id="modalOkBtn">Confirm</button>
+        <button class="modal-btn cancel" id="modalCancelBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <div class="modal-bg" id="deleteModalBg" tabindex="-1">
+    <div class="modal-dialog" role="dialog" aria-modal="true">
+      <div class="modal-title" id="deleteModalTitle"></div>
+      <div class="modal-btn-row">
+        <button class="modal-btn" id="deleteModalYesBtn">Yes</button>
+        <button class="modal-btn cancel" id="deleteModalNoBtn">No</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Math Symbols Modal -->
+  <div class="math-symbols-modal-bg" id="mathSymbolsModalBg" tabindex="-1">
+    <div class="math-symbols-modal-dialog" role="dialog" aria-modal="true">
+      <div class="modal-title" id="mathSymbolsModalTitle">Insert Symbols Using LaTeX</div>
+      <input id="mathSymbolsSearch" class="math-symbols-search" type="text" placeholder="Search LaTeX symbol or code...">
+      <div class="math-symbols-modal-header-row">
+        <div class="math-symbols-modal-header-box">Symbol</div>
+        <div class="math-symbols-modal-header-box">LaTeX Code</div>
+      </div>
+      <div class="math-symbols-modal-content-scroll">
+        <table class="math-symbols-table" id="mathSymbolsTable">
+          <thead>
+            <tr>
+              <th>Symbol</th>
+              <th>LaTeX Code</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Filled by JS -->
+          </tbody>
+        </table>
+      </div>
+      <div class="math-symbols-modal-close-row">
+        <button class="math-symbols-modal-insert-btn" id="mathSymbolsModalInsertBtn" disabled>Confirm</button>
+        <button class="math-symbols-modal-cancel-btn" id="mathSymbolsModalCancelBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Custom Background Color Modal -->
+  <div class="modal-bg" id="customBgModal" tabindex="-1">
+    <div class="modal-dialog custom-bg-dialog" role="dialog" aria-modal="true">
+      <div class="modal-title custom-bg-title" id="customBgTitle">Custom Background Color</div>
+      <div class="custom-bg-row">
+        <input id="customBgHex" type="text" maxlength="7" class="modal-input custom-bg-hex" placeholder="#5A6E7F">
+        <div id="customBgSwatch" class="custom-bg-swatch" aria-hidden="true"></div>
+      </div>
+      <div class="modal-btn-row custom-bg-btn-row">
+        <button class="modal-btn" id="customBgOkBtn">Confirm</button>
+        <button class="modal-btn cancel" id="customBgCancelBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Custom Table Modal -->
+  <div class="math-symbols-modal-bg" id="customTableModalBg" tabindex="-1">
+    <div class="math-symbols-modal-dialog custom-table-dialog" role="dialog" aria-modal="true">
+      <div class="modal-title" id="customTableModalTitle">Insert Custom Table</div>
+      <div class="custom-table-controls">
+        <label class="custom-table-label">Rows:
+          <input type="number" id="customTableRows" min="1" max="20" value="2">
+        </label>
+        <label class="custom-table-label">Columns:
+          <input type="number" id="customTableCols" min="1" max="10" value="2">
+        </label>
+      </div>
+      <div class="math-symbols-modal-content-scroll custom-table-scroll">
+        <div id="customTableCells" class="custom-table-cells"></div>
+      </div>
+      <div class="math-symbols-modal-close-row">
+        <button class="math-symbols-modal-insert-btn" id="customTableInsertBtn">Confirm</button>
+        <button class="math-symbols-modal-cancel-btn" id="customTableCancelBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

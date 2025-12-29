@@ -1,0 +1,38 @@
+THIRD-PARTY NOTICES
+
+Archive Notes includes third-party open source components. Copyright for these
+components is held by their respective authors and contributors. These components
+are licensed separately under the terms indicated below.
+
+This file provides attribution and pointers to the upstream projects.
+
+Included components (non-exhaustive):
+
+1) Electron — MIT License
+Project: https://www.electronjs.org/
+Repository: https://github.com/electron/electron
+
+2) electron-builder — MIT License
+Project/Repository: https://github.com/electron-userland/electron-builder
+
+3) DOMPurify — Apache License 2.0
+Project/Repository: https://github.com/cure53/DOMPurify
+
+4) Marked — MIT License
+Project/Repository: https://github.com/markedjs/marked
+
+5) MathJax — Apache License 2.0
+Project/Repository: https://github.com/mathjax/MathJax
+
+IMPORTANT:
+- When distributing Archive Notes, you must comply with the licenses of any
+  third-party components you ship.
+- If you redistribute the installer/bundle, ensure the relevant license texts
+  and notices required by those components are included.
+
+Bundled upstream license texts (verbatim, per package):
+- third_party_licenses\\electron-LICENSE
+- third_party_licenses\\dompurify-LICENSE
+- third_party_licenses\\marked-LICENSE.md
+- third_party_licenses\\mathjax-LICENSE
+

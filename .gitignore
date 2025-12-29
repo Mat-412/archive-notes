@@ -1,0 +1,43 @@
+# Node modules
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Electron user data
+*.local.json
+*.log
+
+# Build output
+/dist/
+/build/
+
+# VSCode settings
+.vscode/
+
+# Environment files
+.env
+.env.*
+
+# Backup files
+*.bak
+*.tmp
+
+# Electron cache
+.cache/
+
+# Windows
+*.exe
+*.dll
+
+# Mac
+*.app
+
+# Misc
+*.swp 
