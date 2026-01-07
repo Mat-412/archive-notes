@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C4T08XL36M"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-C4T08XL36M');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -452,6 +461,62 @@
                             content.style.display = "none";
                             toggle.textContent = "See Release Notes";
                         }
+                    }
+                });
+            });
+        })();
+    </script>
+
+    <script>
+        // Track download clicks with Google Analytics
+        (function () {
+            // Track "Download Latest Free Version" buttons
+            const latestButtons = document.querySelectorAll('.download-btn[href*="releases"]');
+            latestButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'download', {
+                            'event_category': 'Download',
+                            'event_label': 'Latest Free Version',
+                            'value': 1
+                        });
+                    }
+                });
+            });
+
+            // Track version-specific download buttons
+            const versionButtons = document.querySelectorAll('.version-download-btn');
+            versionButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Extract version from the href or nearby text
+                    const href = btn.getAttribute('href') || '';
+                    let version = 'Unknown';
+                    
+                    // Try to extract version from href (e.g., v1.0.2)
+                    const versionMatch = href.match(/v(\d+\.\d+\.\d+)/);
+                    if (versionMatch) {
+                        version = versionMatch[1];
+                    } else {
+                        // Fallback: try to get version from the row
+                        const row = btn.closest('.version-row');
+                        if (row) {
+                            const versionEl = row.querySelector('.version-number');
+                            if (versionEl) {
+                                const versionText = versionEl.textContent.trim();
+                                const vMatch = versionText.match(/v(\d+\.\d+\.\d+)/);
+                                if (vMatch) {
+                                    version = vMatch[1];
+                                }
+                            }
+                        }
+                    }
+
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'download', {
+                            'event_category': 'Download',
+                            'event_label': 'Version ' + version,
+                            'value': 1
+                        });
                     }
                 });
             });
