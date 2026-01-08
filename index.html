@@ -468,36 +468,37 @@
     </script>
 
     <script>
-        // Track download clicks with Google Analytics
+        // Track download clicks with Google Analytics by version
         (function () {
-            // Track "Download Latest Free Version" buttons
-            const latestButtons = document.querySelectorAll('.download-btn[href*="releases"]');
-            latestButtons.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', 'download', {
-                            'event_category': 'Download',
-                            'event_label': 'Latest Free Version',
-                            'value': 1
-                        });
-                    }
-                });
-            });
+            // Function to extract version from URL
+            function extractVersion(href) {
+                if (!href || href === '#' || !href.includes('releases')) return null;
+                const versionMatch = href.match(/\/v(\d+\.\d+\.\d+)\//);
+                return versionMatch ? versionMatch[1] : null;
+            }
 
-            // Track version-specific download buttons
-            const versionButtons = document.querySelectorAll('.version-download-btn');
-            versionButtons.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Extract version from the href or nearby text
+            // Function to track download with version
+            function trackDownload(version, buttonType) {
+                if (typeof gtag === 'undefined') return;
+                
+                const label = version ? `Version ${version}` : 'Unknown Version';
+                gtag('event', 'download', {
+                    'event_category': 'Download',
+                    'event_label': label,
+                    'event_value': 1
+                });
+            }
+
+            // Track all download buttons (both "Latest" and version-specific)
+            const allDownloadButtons = document.querySelectorAll('a[href*="releases/download"], a.download-btn[href*="releases"], a.version-download-btn[href*="releases"]');
+            
+            allDownloadButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
                     const href = btn.getAttribute('href') || '';
-                    let version = 'Unknown';
+                    const version = extractVersion(href);
                     
-                    // Try to extract version from href (e.g., v1.0.2)
-                    const versionMatch = href.match(/v(\d+\.\d+\.\d+)/);
-                    if (versionMatch) {
-                        version = versionMatch[1];
-                    } else {
-                        // Fallback: try to get version from the row
+                    // If version not found in URL, try to get from nearby version number element
+                    if (!version) {
                         const row = btn.closest('.version-row');
                         if (row) {
                             const versionEl = row.querySelector('.version-number');
@@ -505,19 +506,14 @@
                                 const versionText = versionEl.textContent.trim();
                                 const vMatch = versionText.match(/v(\d+\.\d+\.\d+)/);
                                 if (vMatch) {
-                                    version = vMatch[1];
+                                    trackDownload(vMatch[1], 'version-specific');
+                                    return;
                                 }
                             }
                         }
                     }
-
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', 'download', {
-                            'event_category': 'Download',
-                            'event_label': 'Version ' + version,
-                            'value': 1
-                        });
-                    }
+                    
+                    trackDownload(version, version ? 'version-specific' : 'latest');
                 });
             });
         })();
