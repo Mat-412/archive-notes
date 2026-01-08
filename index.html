@@ -481,7 +481,7 @@
             function trackDownload(version, buttonType) {
                 if (typeof gtag === 'undefined') return;
                 
-                const label = version ? `Version ${version}` : 'Unknown Version';
+                const label = version ? `Version ${version} (Free Edition)` : 'Unknown Version (Free Edition)';
                 gtag('event', 'download', {
                     'event_category': 'Download',
                     'event_label': label,
