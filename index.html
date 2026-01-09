@@ -8,7 +8,9 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-C4T08XL36M');
+      gtag('config', 'G-C4T08XL36M', {
+        'file_download': false  // Disable automatic file download tracking - we'll use custom tracking
+      });
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -482,11 +484,13 @@
                 if (typeof gtag === 'undefined') return;
                 
                 const label = version ? `Version ${version} (Free Edition)` : 'Unknown Version (Free Edition)';
+                const fileName = href ? href.split('/').pop() : 'unknown';
+                
+                // Send file_download event with custom label for version tracking
                 gtag('event', 'file_download', {
-                    'event_category': 'Download',
-                    'event_label': label,
-                    'file_name': href ? href.split('/').pop() : 'unknown',
-                    'file_extension': 'exe'
+                    'file_name': fileName,
+                    'file_extension': 'exe',
+                    'event_label': label
                 });
             }
 
@@ -508,14 +512,17 @@
                                 const vMatch = versionText.match(/v(\d+\.\d+\.\d+)/);
                                 if (vMatch) {
                                     trackDownload(vMatch[1], href);
+                                    // Don't prevent default - let download proceed
                                     return;
                                 }
                             }
                         }
                     }
                     
+                    // Track the download immediately
                     trackDownload(version, href);
-                });
+                    // Don't prevent default - let download proceed
+                }, true); // Use capture phase to fire before other handlers
             });
         })();
     </script>
