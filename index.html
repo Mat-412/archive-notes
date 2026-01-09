@@ -468,7 +468,7 @@
     </script>
 
     <script>
-        // Track download clicks with Google Analytics by version
+        // Track download clicks with Google Analytics by version using file_download event
         (function () {
             // Function to extract version from URL
             function extractVersion(href) {
@@ -478,14 +478,15 @@
             }
 
             // Function to track download with version
-            function trackDownload(version, buttonType) {
+            function trackDownload(version, href) {
                 if (typeof gtag === 'undefined') return;
                 
                 const label = version ? `Version ${version} (Free Edition)` : 'Unknown Version (Free Edition)';
-                gtag('event', 'download', {
+                gtag('event', 'file_download', {
                     'event_category': 'Download',
                     'event_label': label,
-                    'event_value': 1
+                    'file_name': href ? href.split('/').pop() : 'unknown',
+                    'file_extension': 'exe'
                 });
             }
 
@@ -506,14 +507,14 @@
                                 const versionText = versionEl.textContent.trim();
                                 const vMatch = versionText.match(/v(\d+\.\d+\.\d+)/);
                                 if (vMatch) {
-                                    trackDownload(vMatch[1], 'version-specific');
+                                    trackDownload(vMatch[1], href);
                                     return;
                                 }
                             }
                         }
                     }
                     
-                    trackDownload(version, version ? 'version-specific' : 'latest');
+                    trackDownload(version, href);
                 });
             });
         })();
