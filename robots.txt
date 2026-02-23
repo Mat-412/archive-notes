@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Sitemap: https://archive-notes.com/sitemap.xml
+
+
