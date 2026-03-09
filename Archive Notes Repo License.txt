@@ -1,0 +1,38 @@
+ARCHIVE NOTES — REPOSITORY LICENSE
+
+Copyright (c) 2025 Carson Matheu. All rights reserved.
+
+This repository and its contents are proprietary. This is NOT open source software.
+
+1. Repository Scope
+This repository distributes proprietary materials related to Archive Notes, including installers, documentation, website content, and other assets.
+All materials in this repository are licensed, not sold.
+
+2. Restrictions
+Except where explicitly permitted by edition‑specific license terms, you may NOT:
+
+copy, modify, translate, or create derivative works of the materials in this repository;
+
+distribute, sublicense, rent, lease, lend, sell, or otherwise make the materials available to any third party;
+
+reverse engineer, decompile, disassemble, or attempt to derive the source code, underlying ideas, algorithms, structure, or organization of the Software, except where prohibited by applicable law.
+
+3. Software Licensing
+The Free Edition and Paid Edition of Archive Notes are each governed by their own end‑user license agreements.
+See FREE-LICENSE.txt for the Free Edition terms.
+The Paid Edition license is provided to paying customers within the installer package.
+
+4. Ownership
+All rights, title, and interest in and to this repository and the software distributed through it are owned exclusively by Carson Matheu.
+
+5. Third‑Party Components
+Some editions of the software may include third‑party components licensed under their own terms.
+See THIRD_PARTY_NOTICES.txt for details.
+
+6. Disclaimer of Warranty
+ALL MATERIALS IN THIS REPOSITORY ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON‑INFRINGEMENT.
+
+7. Limitation of Liability
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE AUTHOR SHALL NOT BE LIABLE FOR ANY DAMAGES OR CLAIMS ARISING FROM THE USE OF, OR INABILITY TO USE, THE SOFTWARE OR MATERIALS DISTRIBUTED THROUGH THIS REPOSITORY.
+
+For licensing questions, contact: cjmatheu31@outlook.com
