@@ -154,14 +154,15 @@ header p {
 
 .versions-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 2rem;
-    max-width: 1400px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
 .version-group {
     margin-bottom: 0;
+    width: 100%;
 }
 
 .version-group-title {
