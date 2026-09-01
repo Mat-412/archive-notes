@@ -213,24 +213,6 @@ header p {
     line-height: 1.3;
 }
 
-.version-edition {
-    padding: 0.3rem 0.8rem;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-align: center;
-}
-
-.version-edition.free {
-    background-color: #505050;
-    color: white;
-}
-
-.version-edition.paid {
-    background-color: #4a6741;
-    color: white;
-}
-
 .version-notes {
     font-size: 0.95rem;
     opacity: 0.9;
@@ -329,27 +311,6 @@ header p {
     gap: 1.5rem;
     justify-content: center;
     flex-wrap: wrap;
-}
-
-.download-btn.paid {
-    background-color: #4a6741;
-    border-color: #3d5535;
-}
-
-.download-btn.paid:hover {
-    background-color: #3d5535;
-}
-
-.download-btn.paid:active {
-    background-color: #2d3f27;
-}
-
-.download-btn.coming-soon {
-    background-color: #505050;
-    border-color: #5a5a5a;
-    opacity: 0.6;
-    cursor: not-allowed;
-    pointer-events: none;
 }
 
 /* Footer */
