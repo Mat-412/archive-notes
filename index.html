@@ -268,7 +268,7 @@
                             <div class="version-notes">
                                 <a href="#" class="release-notes-toggle" data-target="notes-1.0.0">See Release Notes</a>
                                 <div class="release-notes-content" id="notes-1.0.0" style="display: none; font-size: 0.8rem; line-height: 1.4; margin-top: 0.5rem;">
-                                    Initial public release (Free Edition: personal, non-commercial use).
+                                    Initial public release (personal, non-commercial use).
                                 </div>
                             </div>
                             <div class="version-download">
@@ -302,13 +302,13 @@
     </footer>
 
     <script>
-        // "Download Latest Free Version" should always fetch the newest release asset.
+        // "Download Latest Version" should always fetch the newest release asset.
         // Falls back to GitHub releases/latest page if the API call fails.
         (function () {
-            const buttons = document.querySelectorAll(".latest-free-download");
+            const buttons = document.querySelectorAll(".latest-download");
             if (!buttons.length) return;
 
-            async function getLatestFreeExeUrl(owner, repo) {
+            async function getLatestExeUrl(owner, repo) {
                 const apiUrl = `https://api.github.com/repos/${owner}/${repo}/releases/latest`;
                 const res = await fetch(apiUrl, {
                     headers: { "Accept": "application/vnd.github+json" }
@@ -318,14 +318,13 @@
                 const release = await res.json();
                 const assets = Array.isArray(release.assets) ? release.assets : [];
 
-                // Prefer "free" .exe installers, then any .exe.
-                const freeExe = assets.find(a =>
+                const installerExe = assets.find(a =>
                     typeof a?.name === "string" &&
                     /\.exe$/i.test(a.name) &&
-                    /free/i.test(a.name) &&
+                    /setup/i.test(a.name) &&
                     typeof a?.browser_download_url === "string"
                 );
-                if (freeExe?.browser_download_url) return freeExe.browser_download_url;
+                if (installerExe?.browser_download_url) return installerExe.browser_download_url;
 
                 const anyExe = assets.find(a =>
                     typeof a?.name === "string" &&
@@ -348,7 +347,7 @@
                     const fallbackUrl = btn.getAttribute("href") || `https://github.com/${owner}/${repo}/releases/latest`;
 
                     try {
-                        const url = await getLatestFreeExeUrl(owner, repo);
+                        const url = await getLatestExeUrl(owner, repo);
                         window.location.href = url;
                     } catch (_) {
                         window.location.href = fallbackUrl;
@@ -375,13 +374,13 @@
                 const release = await res.json();
                 const assets = Array.isArray(release.assets) ? release.assets : [];
 
-                const freeExe = assets.find(a =>
+                const installerExe = assets.find(a =>
                     typeof a?.name === "string" &&
                     /\.exe$/i.test(a.name) &&
-                    /free/i.test(a.name) &&
+                    /setup/i.test(a.name) &&
                     typeof a?.browser_download_url === "string"
                 );
-                if (freeExe?.browser_download_url) return freeExe.browser_download_url;
+                if (installerExe?.browser_download_url) return installerExe.browser_download_url;
 
                 const anyExe = assets.find(a =>
                     typeof a?.name === "string" &&
