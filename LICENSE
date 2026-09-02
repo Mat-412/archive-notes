@@ -1,41 +1,36 @@
-ARCHIVE NOTES — PROPRIETARY LICENSE
+ARCHIVE NOTES — REPOSITORY LICENSE
 
 Copyright (c) 2025 Carson Matheu. All rights reserved.
 
-This software is proprietary. It is NOT open source.
+This repository and its contents are proprietary. This is NOT open source software.
 
-1) Permission (Personal Use)
-You are granted a non-exclusive, non-transferable, revocable license to install and
-use Archive Notes (the "Software") for personal, non-commercial purposes.
+1. Repository Scope
+This repository distributes proprietary materials related to Archive Notes, including installers, documentation, website content, and other assets.
+All materials in this repository are licensed, not sold.
 
-2) Restrictions
-You may NOT, and you may not allow others to:
-- copy, modify, translate, or create derivative works of the Software;
-- distribute, sublicense, rent, lease, lend, sell, or otherwise make the Software
-  available to any third party;
-- reverse engineer, decompile, disassemble, or attempt to derive the source code,
-  underlying ideas, algorithms, structure, or organization of the Software, except
-  to the extent such restriction is prohibited by applicable law.
+2. Restrictions
+You may NOT:
 
-3) Ownership
-The Software is licensed, not sold. All right, title, and interest in and to the
-Software, including all intellectual property rights, are owned by the author.
+copy, modify, translate, or create derivative works of the materials in this repository;
 
-4) Termination
-This license terminates automatically if you violate any term of this license.
-Upon termination, you must stop using the Software and delete all copies.
+distribute, sublicense, rent, lease, lend, sell, or otherwise make the materials available to any third party;
 
-5) Disclaimer of Warranty
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
-PARTICULAR PURPOSE, AND NON-INFRINGEMENT. YOU ASSUME ALL RISK ARISING OUT OF USE.
+reverse engineer, decompile, disassemble, or attempt to derive the source code, underlying ideas, algorithms, structure, or organization of the Software, except where prohibited by applicable law.
 
-6) Limitation of Liability
-TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-ANY DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-DEALINGS IN THE SOFTWARE.
+3. Software Licensing
+Archive Notes is governed by the end-user license agreement included with the software and summarized on the Terms page of this website.
 
-7) Third-Party Software
-The Software includes third-party components licensed under their own terms.
-See THIRD_PARTY_NOTICES.txt.
+4. Ownership
+All rights, title, and interest in and to this repository and the software distributed through it are owned exclusively by Carson Matheu.
+
+5. Third-Party Components
+The software may include third-party components licensed under their own terms.
+See THIRD_PARTY_NOTICES.txt for details.
+
+6. Disclaimer of Warranty
+ALL MATERIALS IN THIS REPOSITORY ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+7. Limitation of Liability
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE AUTHOR SHALL NOT BE LIABLE FOR ANY DAMAGES OR CLAIMS ARISING FROM THE USE OF, OR INABILITY TO USE, THE SOFTWARE OR MATERIALS DISTRIBUTED THROUGH THIS REPOSITORY.
+
+For licensing questions, contact: cjmatheu31@outlook.com
